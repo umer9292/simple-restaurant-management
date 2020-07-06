@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>@yield('title')</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -30,19 +30,18 @@
 <body>
     <div id="app">
         <div class="wrapper ">
-            <!-- Sidebar -->
-            @include('layouts.partial.sidebar')
+            @if(Request::is('admin*'))
+                @include('layouts.partial.sidebar')
+            @endif
 
             <div class="main-panel">
-
-                <!-- Top Navbar -->
-                @include('layouts.partial.topbar')
-
-                    @yield('content')
-
-                <!-- Footer -->
-                @include('layouts.partial.footer')
-
+                @if(Request::is('admin*'))
+                    @include('layouts.partial.topbar')
+                @endif
+                        @yield('content')
+                @if(Request::is('admin*'))
+                    @include('layouts.partial.footer')
+                @endif
             </div>
         </div>
         <div class="fixed-plugin">
