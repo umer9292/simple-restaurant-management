@@ -31,6 +31,7 @@
                                             <th>Image</th>
                                             <th>Created At</th>
                                             <th>Updated At</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -43,6 +44,11 @@
                                                     <td>{{$slider->image}}</td>
                                                     <td>{{$slider->created_at}}</td>
                                                     <td>{{$slider->updated_at}}</td>
+                                                    <td>
+                                                        <a href="{{route('slider.edit', $slider->id)}}" class="btn btn-sm btn-info">
+                                                            Edit
+                                                        </a>
+                                                    </td>
                                                 </tr>
                                             @endforeach
                                         @endif

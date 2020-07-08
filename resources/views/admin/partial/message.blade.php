@@ -5,7 +5,7 @@
                 <i class="material-icons">close</i>
             </button>
             <span>
-              <b> Danger - </b> {{ $error }}
+              <b> Error - </b> {{ $error }}
             </span>
         </div>
     @endforeach
@@ -18,6 +18,17 @@
         </button>
         <span>
               <b> Success - </b> {{ session('success') }}
+        </span>
+    </div>
+@endif
+
+@if (session()->has('error'))
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <i class="material-icons">close</i>
+        </button>
+        <span>
+              <b> Error - </b> {{ session('error') }}
         </span>
     </div>
 @endif
