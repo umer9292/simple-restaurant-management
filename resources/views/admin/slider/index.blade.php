@@ -15,14 +15,14 @@
 
                     @include('admin.partial.message')
 
-                    <a href="{{route('slider.create')}}" class="btn btn-info">Add New</a>
+                    <a href="{{route('slider.create')}}" class="btn btn-primary">Add New Slider</a>
                     <div class="card">
                         <div class="card-header card-header-primary">
                             <h4 class="card-title ">All Slider</h4>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table id="table" class="table table-striped table-bordered"  style="width:100%">
+                                <table id="table" class="table"  style="width:100%">
                                     <thead class=" text-primary">
                                         <tr>
                                             <th>ID</th>
@@ -46,8 +46,28 @@
                                                     <td>{{$slider->updated_at}}</td>
                                                     <td>
                                                         <a href="{{route('slider.edit', $slider->id)}}" class="btn btn-sm btn-info">
-                                                            Edit
+                                                            <i class="material-icons">mode_edit</i>
                                                         </a>
+
+                                                        <button type="button" class="btn btn-sm btn-danger"
+                                                            onclick="if(confirm('Are you sure? You want to delete this?')){
+                                                                event.preventDefault();
+                                                                document.getElementById('delete-form-{{$slider->id}}').submit();
+                                                            } else {
+                                                                event.preventDefault();
+
+                                                                }"
+                                                        >
+                                                            <i class="material-icons">delete</i>
+                                                        </button>
+                                                        <form id="delete-form-{{$slider->id}}"
+                                                              action="{{route('slider.destroy', $slider->id)}}"
+                                                              method="post"
+                                                              style="display: none"
+                                                        >
+                                                            @csrf
+                                                            @method('DELETE')
+                                                        </form>
                                                     </td>
                                                 </tr>
                                             @endforeach

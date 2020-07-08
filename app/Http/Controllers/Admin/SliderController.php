@@ -146,8 +146,12 @@ class SliderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function destroy($id)
     {
-        //
+        $slider = Slider::find($id);
+        unlink('uploads/slider/'.$slider->image);
+        $slider->delete();
+        return redirect()->back()->with('success', 'Slider Successfully Deleted');
     }
 }
