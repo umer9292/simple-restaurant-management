@@ -23,5 +23,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth', 'namespace' => 'admin
         'as' => 'admin.dashboard',
         'uses' => 'DashboardController@index'
     ]);
-    
+
+
+    Route::resource('slider', 'SliderController');
 });
