@@ -17,18 +17,8 @@
     <link rel="stylesheet" href="{{asset('frontend/css/pricing.css')}}">
     <link rel="stylesheet" href="{{asset('frontend/css/main.css')}}">
 
-    <style>
-        @foreach($sliders as $key => $slider)
-            .owl-carousel .owl-wrapper, .owl-carousel .owl-item:nth-child({{$key + 1}}) .item
-            {
-                background: url({{asset('uploads/slider/'. $slider->image)}});
-                background-size: cover;
-            }
-        @endforeach
-    </style>
-
-    <script src="js/jquery-1.11.2.min.js"></script>
-    <script type="text/javascript" src="js/jquery.flexslider.min.js"></script>
+    <script src="{{asset('frontend/js/jquery-1.11.2.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('frontend/js/jquery.flexslider.min.js')}}"></script>
     <script type="text/javascript">
         $(window).load(function() {
             $('.flexslider').flexslider({
@@ -37,6 +27,16 @@
             });
         });
     </script>
+
+    <style>
+        @foreach($sliders as $key => $slider)
+            .owl-carousel .owl-wrapper, .owl-carousel .owl-item:nth-child({{$key + 1}}) .item
+        {
+            background: url({{asset('uploads/slider/'. $slider->image)}});
+            background-size: cover;
+        }
+        @endforeach
+    </style>
 
 </head>
 <body data-spy="scroll" data-target="#template-navbar">
@@ -91,7 +91,7 @@
 
 <!--== 6. About us ==-->
 <section id="about" class="about">
-    <img src="images/icons/about_color.png" class="img-responsive section-icon hidden-sm hidden-xs">
+    <img src="{{asset('frontend/images/icons/about_color.png')}}" class="img-responsive section-icon hidden-sm hidden-xs">
     <div class="wrapper">
         <div class="container-fluid">
             <div class="row dis-table">
