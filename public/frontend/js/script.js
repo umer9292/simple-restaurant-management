@@ -12,7 +12,7 @@
         pagination: false,
 
         // "singleItem:true" is a shortcut for:
-        // items : 1, 
+        // items : 1,
         // itemsDesktop : false,
         // itemsDesktopSmall : false,
         // itemsTablet: false,
@@ -52,7 +52,7 @@ wow.init();
         });
     });
 
-    
+
 /*====================================================================
             Navbar shrink script
 ======================================================================*/
@@ -60,7 +60,7 @@ $(document).ready(function() {
     $(window).scroll(function() {
         if ($(document).scrollTop() > 50) {
             $('nav').addClass('shrink');
-        } 
+        }
         else {
             $('nav').removeClass('shrink');
         }
@@ -71,10 +71,10 @@ $(document).ready(function() {
 $(document).ready(function(){
     $(window).scroll(function() {
         if ($(document).scrollTop() > 50) {
-            $("#logo").attr("src", "images/Logo_stick.png")
+            $("#logo").attr("src", "frontend/images/Logo_stick.png")
         }
         else {
-             $("#logo").attr("src", "images/Logo_main.png")
+             $("#logo").attr("src", "frontend/images/Logo_main.png")
         }
     });
 });
@@ -84,7 +84,7 @@ $(document).ready(function(){
 
 $(document).ready(function () {
     $("#loadMenuContent").click(function(event) {
-        
+
         $.get("php/ajax_menu.html", function(data){
             $('#moreMenuContent').append(data);
         });
@@ -122,6 +122,6 @@ $('.iconified').on('keyup', function() {
                 Scroll  Speed
 =======================================================*/
 
-$(function() {  
+$(function() {
     jQuery.scrollSpeed(100, 1000);
 });
