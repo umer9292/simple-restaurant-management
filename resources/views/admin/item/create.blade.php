@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Category Create')
+@section('title', 'Item Create')
 
 @push('css')
 
@@ -16,10 +16,10 @@
 
                     <div class="card">
                         <div class="card-header card-header-primary">
-                            <h4 class="card-title ">Add New Category</h4>
+                            <h4 class="card-title ">Add New Item</h4>
                         </div>
                         <div class="card-body">
-                            <form action="{{route('category.store')}}" method="POST">
+                            <form action="{{route('item.store')}}" method="POST">
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-12">
@@ -29,7 +29,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a href="{{route('category.index')}}" class="btn btn-danger">Back</a>
+                                <a href="{{route('item.index')}}" class="btn btn-danger">Back</a>
                                 <button type="submit" class="btn btn-primary">Save</button>
                             </form>
                         </div>

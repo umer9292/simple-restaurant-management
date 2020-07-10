@@ -28,4 +28,5 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth', 'namespace' => 'admin
 
     Route::resource('slider', 'SliderController');
     Route::resource('category', 'CategoryController');
+    Route::resource('item', 'ItemController');
 });
