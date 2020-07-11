@@ -40,7 +40,6 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-//        dd($request->all());
         $this->validate($request, [
             'category' => 'required',
             'name' => 'required',
@@ -99,7 +98,9 @@ class ItemController extends Controller
      */
     public function edit($id)
     {
-        //
+        $item = Item::find($id);
+        $categories = Category::all();
+        return view('admin.item.edit', compact('item', 'categories'));
     }
 
     /**
@@ -111,7 +112,44 @@ class ItemController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'category' => 'required',
+            'name' => 'required',
+            'description' => 'required',
+            'price' => 'required',
+            'image' => 'mimes:jpeg,jpg,bmp,png'
+        ]);
+
+        try{
+            $item = Item::find($id);
+            $image = $request->file('image');
+            $slug = str_slug($request->name);
+
+            if(isset($image)) {
+                $currentDate = Carbon::now()->toDateString();
+                $imageName = $slug . '-' . $currentDate . '-' . uniqid() . '-' . $image->getClientOriginalExtension();
+
+                if(!file_exists('uploads/item')) {
+                    mkdir('uploads/item', 0777, true);
+                }
+                unlink('uploads/item/'. $item->image);
+                $image->move('uploads/item', $imageName);
+            } else {
+                $imageName = $item->image;
+            }
+
+            $item->category_id = $request->category;
+            $item->name = $request->name;
+            $item->description = $request->description;
+            $item->price = $request->price;
+            $item->image = $imageName;
+            $item->save();
+
+            return redirect()->route('item.index')->with('success', 'Item Successfully Updated.');
+
+        } catch (\Exception $e) {
+            dd($e->getMessage());
+        }
     }
 
     /**
@@ -122,6 +160,11 @@ class ItemController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $item = Item::find($id);
+        if (file_exists('uploads/item/' . $item->image)) {
+            unlink('uploads/item/' . $item->image);
+        }
+        $item->delete();
+        return redirect()->back()->with('success', 'Item Successfully Deleted.');
     }
 }
