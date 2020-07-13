@@ -42,8 +42,13 @@
                                                 <tr>
                                                     <td>{{$item->id}}</td>
                                                     <td>{{$item->name}}</td>
-                                                    <td>{{$item->image}}</td>
-                                                    <td>{{$item->category->name}}</td>
+                                                    <td>
+                                                        <img class="img-responsive img-thumbnail"
+                                                             src="{{asset('uploads/item/'.$item->image)}}"
+                                                             style="height: 80px; width: 100px"
+                                                             alt="cat image">
+                                                    </td>
+                                                    <td>{{$item->category_id}}</td>
                                                     <td>{{$item->description}}</td>
                                                     <td>{{$item->price}}</td>
                                                     <td>{{$item->created_at}}</td>
