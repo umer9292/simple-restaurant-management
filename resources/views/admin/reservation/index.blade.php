@@ -54,6 +54,29 @@
                                                     </td>
                                                     <td>{{$reservation->created_at}}</td>
                                                     <td>
+
+                                                        @if($reservation->status == false)
+                                                            <button type="button" class="btn btn-sm btn-info"
+                                                                    onclick="if(confirm('Are you verify this request by phone?')){
+                                                                        event.preventDefault();
+                                                                        document.getElementById('status-form-{{$reservation->id}}').submit();
+                                                                        } else {
+                                                                        event.preventDefault();
+
+                                                                        }"
+                                                            >
+                                                                <i class="material-icons">done</i>
+                                                            </button>
+                                                            <form id="status-form-{{$reservation->id}}"
+                                                                  action="{{route('reservation.status', $reservation->id)}}"
+                                                                  method="post"
+                                                                  style="display: none"
+                                                            >
+                                                                @csrf
+                                                            </form>
+
+                                                        @endif
+
                                                         <button type="button" class="btn btn-sm btn-danger"
                                                             onclick="if(confirm('Are you sure? You want to delete this?')){
                                                                 event.preventDefault();
@@ -66,7 +89,7 @@
                                                             <i class="material-icons">delete</i>
                                                         </button>
                                                         <form id="delete-form-{{$reservation->id}}"
-                                                              action="{{route('item.destroy', $reservation->id)}}"
+                                                              action="{{route('reservation.destroy', $reservation->id)}}"
                                                               method="post"
                                                               style="display: none"
                                                         >
@@ -98,4 +121,5 @@
             $('#table').DataTable();
         } );
     </script>
+
 @endpush

@@ -35,6 +35,16 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth', 'namespace' => 'admin
         'uses' => 'ReservationController@index'
     ]);
 
+    Route::delete('reservation/{id}', [
+        'as' => 'reservation.destroy',
+        'uses' => 'ReservationController@destroyReservation'
+    ]);
+
+    Route::post('reservation/{id}', [
+        'as' => 'reservation.status',
+        'uses' => 'ReservationController@status'
+    ]);
+
 
     Route::resource('slider', 'SliderController');
     Route::resource('category', 'CategoryController');
