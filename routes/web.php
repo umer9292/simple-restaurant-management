@@ -30,6 +30,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth', 'namespace' => 'admin
         'uses' => 'DashboardController@index'
     ]);
 
+    Route::get('reservation', [
+        'as' => 'reservation.index',
+        'uses' => 'ReservationController@index'
+    ]);
+
 
     Route::resource('slider', 'SliderController');
     Route::resource('category', 'CategoryController');
