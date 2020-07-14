@@ -50,6 +50,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth', 'namespace' => 'admin
         'uses' => 'ReservationController@status'
     ]);
 
+    Route::get('contact', [
+        'as' => 'contact.index',
+        'uses' => 'ContactController@index'
+    ]);
+    
 
     Route::resource('slider', 'SliderController');
     Route::resource('category', 'CategoryController');
