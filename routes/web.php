@@ -30,11 +30,13 @@ Auth::routes();
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth', 'namespace' => 'admin'], function (){
 
+    // dashboard route
     Route::get('dashboard', [
         'as' => 'admin.dashboard',
         'uses' => 'DashboardController@index'
     ]);
 
+    // reservation routes
     Route::get('reservation', [
         'as' => 'reservation.index',
         'uses' => 'ReservationController@index'
@@ -50,12 +52,23 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth', 'namespace' => 'admin
         'uses' => 'ReservationController@status'
     ]);
 
+    // contact routes
     Route::get('contact', [
         'as' => 'contact.index',
         'uses' => 'ContactController@index'
     ]);
-    
 
+    Route::get('contact/{id}', [
+        'as' => 'contact.show',
+        'uses' => 'ContactController@show'
+    ]);
+
+    Route::delete('contact/{id}', [
+        'as' => 'contact.destroy',
+        'uses' => 'ContactController@destroy'
+    ]);
+
+    // resources routes
     Route::resource('slider', 'SliderController');
     Route::resource('category', 'CategoryController');
     Route::resource('item', 'ItemController');

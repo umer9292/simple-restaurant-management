@@ -26,9 +26,7 @@
                                         <tr>
                                             <th>ID</th>
                                             <th>Name</th>
-                                            <th>Email</th>
                                             <th>Subject</th>
-                                            <th>Message</th>
                                             <th>Sent At</th>
                                             <th>Action</th>
                                         </tr>
@@ -39,11 +37,13 @@
                                                 <tr>
                                                     <td>{{$loop->iteration}}</td>
                                                     <td>{{$contact->name}}</td>
-                                                    <td>{{$contact->email}}</td>
                                                     <td>{{$contact->subject}}</td>
-                                                    <td>{{$contact->message}}</td>
                                                     <td>{{$contact->created_at}}</td>
                                                     <td>
+                                                        <a href="{{route('contact.show', $contact->id)}}" class="btn btn-sm btn-info">
+                                                            <i class="material-icons">details</i>
+                                                        </a>
+
                                                         <button type="button" class="btn btn-sm btn-danger"
                                                             onclick="if(confirm('Are you sure? You want to delete this?')){
                                                                 event.preventDefault();
@@ -55,6 +55,7 @@
                                                         >
                                                             <i class="material-icons">delete</i>
                                                         </button>
+
                                                         <form id="delete-form-{{$contact->id}}"
                                                               action="{{route('contact.destroy', $contact->id)}}"
                                                               method="post"
