@@ -21,6 +21,11 @@ Route::post('/reservation', [
     'uses' => 'ReservationController@reserve'
 ]);
 
+Route::post('/contact', [
+    'as' => 'contact.send',
+    'uses' => 'ContactController@sendMessage'
+]);
+
 Auth::routes();
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth', 'namespace' => 'admin'], function (){

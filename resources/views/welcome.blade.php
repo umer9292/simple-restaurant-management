@@ -673,9 +673,6 @@
     </div>
 </section>
 
-
-
-
 <section id="contact" class="contact">
     <div class="container-fluid color-bg">
         <div class="row dis-table">
@@ -705,35 +702,27 @@
     </div>
 </section>
 
-<div class="container-fluid">
-    <div class="row">
-        <div id="map-canvas"></div>
-    </div>
-</div>
-
-
-
 <section class="contact-form">
     <div class="container">
         <div class="row">
             <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
                 <div class="row">
-                    <form class="contact-form" method="post" action="contact.php">
-
+                    <form class="contact-form" method="post" action="{{route('contact.send')}}">
+                        @csrf
                         <div class="col-md-6 col-sm-6">
                             <div class="form-group">
-                                <input  name="name" type="text" class="form-control" id="name" required="required" placeholder="  Name">
+                                <input  name="name" type="text" class="form-control" id="name" placeholder="  Name">
                             </div>
                             <div class="form-group">
-                                <input name="email" type="email" class="form-control" id="email" required="required" placeholder="  Email">
+                                <input name="email" type="email" class="form-control" id="email" placeholder="  Email">
                             </div>
                             <div class="form-group">
-                                <input name="subject" type="text" class="form-control" id="subject" required="required" placeholder="  Subject">
+                                <input name="subject" type="text" class="form-control" id="subject" placeholder="  Subject">
                             </div>
                         </div>
 
                         <div class="col-md-6 col-sm-6">
-                            <textarea name="message" type="text" class="form-control" id="message" rows="7" required="required" placeholder="  Message"></textarea>
+                            <textarea name="message" type="text" class="form-control" id="message" rows="7" placeholder="  Message"></textarea>
                         </div>
 
                         <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
@@ -792,8 +781,8 @@
             todayBtn: true
         });
     });
-
 </script>
+
 {!! Toastr::message() !!}
 
 </body>
